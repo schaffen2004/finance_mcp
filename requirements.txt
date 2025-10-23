@@ -4,3 +4,4 @@ MetaTrader5==5.0.37
 flask
 pydantic
 pytest
+dotenv
