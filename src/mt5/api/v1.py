@@ -63,7 +63,7 @@ def initialize_mt5(login: int, password: str, server: str):
 # ==============================
 # 🧩 API Endpoints
 # ==============================
-@app.route("/api/v1/account-info", methods=["POST"])
+@app.route("/api/v1/account_info", methods=["POST"])
 def get_account_info():
     """Get current account information"""
     try:
