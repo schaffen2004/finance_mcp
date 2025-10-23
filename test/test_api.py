@@ -3,6 +3,14 @@ import json
 
 BASE_URL = "http://localhost:8386"
 
+def test_health():
+    """Test health endpoint"""
+    response = requests.get(f"{BASE_URL}/api/v1/health")
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data.get("status") == "healthy"
+    
 def test_api():
     """Test API endpoints and get results"""
     print("=== Finance MCP API Test ===")
@@ -10,7 +18,7 @@ def test_api():
     # Test health endpoint
     print("\n1. Testing health endpoint...")
     try:
-        response = requests.get(f"{BASE_URL}/health")
+        response = requests.get(f"{BASE_URL}/api/v1/health")
         print(f"Status: {response.status_code}")
         print(f"Response: {json.dumps(response.json(), indent=2)}")
     except Exception as e:
@@ -27,7 +35,7 @@ def test_api():
 
     try:
         response = requests.post(
-            f"{BASE_URL}/account_info",
+            f"{BASE_URL}/api/v1/account_info",
             json=account_data,
             headers={'Content-Type': 'application/json'}
         )
@@ -105,4 +113,4 @@ def test_api():
     # print("\n=== Test completed ===")
 
 if __name__ == "__main__":
-    test_api()
+    test_health()

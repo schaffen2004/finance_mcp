@@ -2,7 +2,10 @@ from flask import Flask, jsonify, request
 from datetime import datetime, timedelta
 from pydantic import BaseModel, Field, field_validator
 import MetaTrader5 as mt5
+import os
+import dotenv
 
+dotenv.load_dotenv()
 # ==============================
 # 🚀 Cấu hình Flask
 # ==============================
@@ -40,7 +43,7 @@ class HistoryRequest(BaseModel):
 # ==============================
 # ⚙️ Cấu hình mặc định MT5
 # ==============================
-MT5_DEFAULT_PATH = "/home/schaffen/.wine/drive_c/Program Files/MetaTrader 5/terminal64.exe"
+MT5_DEFAULT_PATH = os.getenv("MT5_DEFAULT_PATH", r"C:\\Program Files\\MetaTrader 5\\terminal64.exe")
 
 def initialize_mt5(login: int, password: str, server: str):
     """Initialize MetaTrader 5 connection"""
